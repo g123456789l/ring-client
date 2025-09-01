@@ -9,21 +9,25 @@ import { cleanOutputDirectory, outputDirectory } from './util'
  **/
 
 async function example() {
+
+  // Get filename prefix from command line args
+  const filenamePrefix = process.argv[2] || 'part';
+
   const ringApi = new RingApi({
-      // Replace with your refresh token
-      refreshToken: process.env.RING_REFRESH_TOKEN!,
-      debug: true,
-    }),
-    [camera] = await ringApi.getCameras()
+    // Replace with your refresh token
+    refreshToken: process.env.RING_REFRESH_TOKEN!,
+    debug: true,
+  }),
+    [camera] = await ringApi.getCameras();
 
   if (!camera) {
-    console.log('No cameras found')
-    return
+    console.log('No cameras found');
+    return;
   }
 
-  await cleanOutputDirectory()
+  await cleanOutputDirectory();
 
-  console.log('Starting Video...')
+  console.log('Starting Video...');
   const call = await camera.streamVideo({
     // save video 30 second parts so the mp4s are playable and not corrupted:
     // https://superuser.com/questions/999400/how-to-use-ffmpeg-to-extract-live-stream-into-a-sequence-of-mp4
@@ -38,10 +42,10 @@ async function example() {
       'movflags=+faststart',
       '-reset_timestamps',
       '1',
-      path.join(outputDirectory, 'part%d.mp4'),
+      path.join(outputDirectory, `${filenamePrefix}_part%d.mp4`),
     ],
-  })
-  console.log('Video started, streaming to part files...')
+  });
+  console.log('Video started, streaming to part files...');
 
   call.onCallEnded.subscribe(() => {
     console.log('Call has ended')

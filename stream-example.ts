@@ -4,7 +4,7 @@ import * as path from 'path'
 import { cleanOutputDirectory, outputDirectory } from './util'
 
 /**
- * This example streams to files, each with 10 seconds of video.
+ * This example streams to files, each with 30 seconds of video.
  * The output will be in output/part${part #}.mp4
  **/
 

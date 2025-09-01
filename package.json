@@ -2,20 +2,19 @@
   "name": "ring-client",
   "version": "1.0.0",
   "description": "Ring client using the `ring-client-api` npm package",
-  "main": "lib/index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "npm run ts-example",
-    "auth": "ring-auth-cli",
-    "ts-example": "tsc && node --env-file=.env lib/example.js"
+    "start": "ts-node app.ts",
+    "auth": "ring-auth-cli"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dgreif/ring-client.git"
+    "url": "git+https://github.com/g123456789l/ring-client.git"
   },
   "bugs": {
-    "url": "https://github.com/dgreif/ring-client/issues"
+    "url": "https://github.com/g123456789l/ring-client/issues"
   },
-  "homepage": "https://github.com/dgreif/ring-client#readme",
+  "homepage": "https://github.com/g123456789l/ring-client#readme",
   "dependencies": {
     "ring-client-api": "^13.2.1"
   },
